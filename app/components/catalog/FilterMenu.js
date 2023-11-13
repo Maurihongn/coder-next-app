@@ -8,7 +8,7 @@ const FilterMenu = () => {
   const pathname = usePathname();
   return (
     <aside className='bg-white h-fit p-4 rounded-sm hidden lg:block shadow-sm'>
-      <h3 className='text-neutral-800 font-bold text-lg mb-4'>Categorias</h3>
+      <h3 className='text-neutral-800 font-bold text-base mb-4'>Categorias</h3>
 
       <nav className='flex flex-col gap-2'>
         <Link
