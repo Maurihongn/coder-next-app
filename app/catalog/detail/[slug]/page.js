@@ -4,6 +4,15 @@ import QuantitySelector from '@/app/components/catalog/QuantitySelector';
 import { productsMockData } from '@/data/mocks';
 import Image from 'next/image';
 
+export async function generateMetadata({ params, searchParams }, parent) {
+  const { slug } = params;
+  const product = productsMockData.find((p) => p.slug === slug);
+
+  return {
+    title: `Coderhouse app - ${product.title}`,
+  };
+}
+
 const ProductDetail = ({ params }) => {
   const { slug } = params;
 
