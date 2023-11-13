@@ -5,7 +5,7 @@ const ProductCard = ({ item }) => {
   return (
     <article className='shadow-sm hover:shadow-md bg-white rounded-sm h-full sm:max-w-xs'>
       <Link
-        href={`/productos/detail/${item.slug}`}
+        href={`/catalog/detail/${item.slug}`}
         className='flex flex-row sm:flex-col'
       >
         <div className='rounded-sm overflow-hidden w-full aspect-square flex items-center justify-center'>

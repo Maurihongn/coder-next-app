@@ -23,10 +23,10 @@ body {
 }
 
 .h-page {
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 @media (min-width: 1024px) {
   .h-page {
-    height: calc(100vh - 96px);
+    min-height: calc(100vh - 96px);
   }
 }
