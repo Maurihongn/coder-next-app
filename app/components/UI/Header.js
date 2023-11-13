@@ -2,15 +2,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className='w-full bg-neutral-900'>
-      <div className='container mx-auto py-8 flex justify-between items-center px-4 w-full max-w-7xl lg:px-8'>
+    <header className='w-full bg-neutral-900 sticky lg:static'>
+      <div className='container mx-auto h-16 lg:h-24 flex items-center px-4 w-full max-w-7xl lg:px-8 relative'>
         {/* Menu desplegable en movil */}
-        <Link href={'/'}>
+        <Link
+          href={'/'}
+          className='absolute  right-1/2 translate-x-1/2 lg:static lg:translate-x-0'
+        >
           <Image
             src={'/coderlogo.svg'}
             alt='coderhouse-logo'
@@ -19,28 +23,26 @@ const Header = () => {
             className='h-full w-auto'
           />
         </Link>
-        <nav className='flex justify-between gap-4'>
+        <nav className='flex justify-between gap-4 ml-auto items-center'>
+          <div className='hidden lg:contents'>
+            <Link
+              href={'/catalog/all'}
+              className={`${
+                pathname.startsWith('/catalog/')
+                  ? 'bg-neutral-800'
+                  : 'bg-transparent'
+              } px-4 py-2 text-neutral-50 rounded-sm hover:bg-neutral-700 whitespace-nowrap text-ellipsis`}
+            >
+              Catalogo
+            </Link>
+          </div>
           <Link
-            href='/'
-            className={pathname == '/' ? 'text-slate-400' : 'text-slate-100'}
+            href={'/cart'}
+            className={`${
+              pathname == '/cart' ? 'text-slate-400' : 'text-slate-100'
+            }`}
           >
-            Home
-          </Link>
-          <Link
-            href={'/'}
-            className={
-              pathname == '/account' ? 'text-slate-400' : 'text-slate-100'
-            }
-          >
-            Cuenta
-          </Link>
-          <Link
-            href={'/'}
-            className={
-              pathname == '/account' ? 'text-slate-400' : 'text-slate-100'
-            }
-          >
-            Carrito
+            <ShoppingCartOutlinedIcon />
           </Link>
         </nav>
       </div>
