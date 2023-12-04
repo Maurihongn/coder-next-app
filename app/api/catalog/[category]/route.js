@@ -10,7 +10,6 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import { limit } from 'firebase/firestore';
-import { LastPage } from '@mui/icons-material';
 
 export async function GET(req, { params }) {
   const { category } = params;

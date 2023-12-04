@@ -2,21 +2,28 @@ import Button from '@/app/components/UI/Button';
 import Counter from '@/app/components/UI/Counter';
 import QuantitySelector from '@/app/components/catalog/QuantitySelector';
 import { productsMockData } from '@/data/mocks';
+import { db } from '@/firebase/config';
+import { collection, doc, getDoc, where } from 'firebase/firestore';
 import Image from 'next/image';
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { slug } = params;
-  const product = productsMockData.find((p) => p.slug === slug);
+const getProduct = async (slug) => {
+  const productRef = doc(db, 'productos', slug);
+  const productDoc = await getDoc(productRef);
 
-  return {
-    title: `Coderhouse app - ${product.title}`,
-  };
+  const product = productDoc.data();
+
+  console.log(product);
+  return product;
+};
+
+export async function generateMetadata({ params }) {
+  const { slug } = params;
 }
 
-const ProductDetail = ({ params }) => {
+const ProductDetail = async ({ params }) => {
   const { slug } = params;
 
-  const product = productsMockData.find((p) => p.slug === slug);
+  const product = await getProduct(slug);
   return (
     <main className='container m-auto h-page px-4 w-full max-w-7xl lg:px-8 flex flex-col py-4 lg:gap-4  lg:flex-row '>
       <section className='flex flex-col p-4 bg-white rounded-t-sm gap-4 max-w-4xl w-full lg:gap-8 lg:p-8 lg:rounded-b-sm'>
