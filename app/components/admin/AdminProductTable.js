@@ -5,7 +5,23 @@ import React from 'react';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
-const AdminProductTable = () => {
+const getAdminItems = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/admin/list`, {
+      cache: 'no-store',
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const AdminProductTable = async () => {
+  const items = await getAdminItems();
+
   return (
     <div className='overflow-x-auto bg-white p-4 rounded-sm'>
       <table className='w-full text-xs text-left text-gray-600'>
@@ -34,9 +50,9 @@ const AdminProductTable = () => {
             </th>
           </tr>
         </thead>
-        {productsMockData && productsMockData.length > 0 ? (
+        {items.data && items.data.length > 0 ? (
           <tbody>
-            {productsMockData.map((item) => (
+            {items.data.map((item) => (
               <tr key={item.slug}>
                 <td className='px-2'>
                   <Image

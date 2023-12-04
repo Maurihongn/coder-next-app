@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Button from '../components/UI/Button';
 import AdminProductTable from '../components/admin/AdminProductTable';
 import Link from 'next/link';
@@ -24,7 +24,9 @@ const page = () => {
       >
         Nuevo producto
       </Link>
-      <AdminProductTable />
+      <Suspense fallback={<p>Cargando...</p>}>
+        <AdminProductTable />
+      </Suspense>
     </main>
   );
 };
