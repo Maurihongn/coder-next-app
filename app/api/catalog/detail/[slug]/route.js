@@ -1,20 +1,32 @@
 import { db } from '@/firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
+import { NextResponse } from 'next/server';
 
-export async function GET(req, res, { params }) {
+export async function GET(_, { params }) {
   const { slug } = params;
 
   const docRef = doc(db, 'productos', slug);
-
   try {
-    const doc = await getDoc(docRef);
+    const docSnapshot = await getDoc(docRef);
 
-    if (!doc.exists()) {
-      return new Response('Producto no encontrado', { status: 404 });
+    if (!docSnapshot.exists()) {
+      return NextResponse.json(
+        { message: 'Producto no encontrado' },
+        {
+          status: 404,
+        }
+      );
     }
 
-    res.status(200).json(doc.data());
+    return NextResponse.json(docSnapshot.data(), {
+      status: 200,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return NextResponse.json(
+      { message: 'Error al obtener el producto' },
+      {
+        status: 500,
+      }
+    );
   }
 }

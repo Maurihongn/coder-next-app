@@ -1,7 +1,3 @@
-import Image from 'next/image';
-import Counter from './components/UI/Counter';
-import Header from './components/UI/Header';
-
 export const metadata = {
   title: 'Coderhouse app',
   description: 'App de muestra en NextJS',

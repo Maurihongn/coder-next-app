@@ -1,19 +1,38 @@
-import Button from '@/app/components/UI/Button';
-import Counter from '@/app/components/UI/Counter';
 import QuantitySelector from '@/app/components/catalog/QuantitySelector';
-import { productsMockData } from '@/data/mocks';
 import { db } from '@/firebase/config';
-import { collection, doc, getDoc, where } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import Image from 'next/image';
 
 const getProduct = async (slug) => {
-  const productRef = doc(db, 'productos', slug);
-  const productDoc = await getDoc(productRef);
+  // const productRef = doc(db, 'productos', slug);
 
-  const product = productDoc.data();
+  // const productDoc = await getDoc(productRef);
 
-  console.log(product);
-  return product;
+  // const product = productDoc.data();
+
+  // return product;
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/catalog/detail/${slug}`,
+      {
+        cache: 'no-store',
+      }
+    );
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export async function generateMetadata({ params }) {

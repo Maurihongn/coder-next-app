@@ -1,4 +1,6 @@
+import CardGroupSkeleton from '@/app/components/UI/CardGroupSkeleton';
 import ProductList from '@/app/components/catalog/ProductList';
+import { Suspense } from 'react';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   return {
@@ -6,11 +8,24 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
+export function generateStaticParams() {
+  return [
+    { category: 'all' },
+    { category: 'tvs' },
+    { category: 'hornos' },
+    { category: 'aires' },
+  ];
+}
+
+export const revalidate = 3600;
+
 const Products = ({ params }) => {
   const { category } = params;
   return (
     <section>
-      <ProductList category={category} />
+      <Suspense fallback={<CardGroupSkeleton />}>
+        <ProductList category={category} />
+      </Suspense>
     </section>
   );
 };
