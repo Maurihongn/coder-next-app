@@ -1,4 +1,3 @@
-import CardGroupSkeleton from '@/app/components/UI/CardGroupSkeleton';
 import ProductList from '@/app/components/catalog/ProductList';
 import { Suspense } from 'react';
 
@@ -23,7 +22,7 @@ const Products = ({ params }) => {
   const { category } = params;
   return (
     <section>
-      <Suspense fallback={<CardGroupSkeleton />}>
+      <Suspense fallback={<div>Cargando...</div>}>
         <ProductList category={category} />
       </Suspense>
     </section>
