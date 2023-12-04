@@ -16,7 +16,6 @@ export async function GET(req) {
   const page = req.nextUrl.searchParams.get('page') || 1;
   const pagesize = req.nextUrl.searchParams.get('pageSize') || 50;
 
-  //   console.log(order);
   const productosRef = collection(db, 'productos');
 
   let queries = [];
@@ -51,8 +50,6 @@ export async function GET(req) {
 
     const docs = querySnapshot.docs.map((doc) => doc.data());
 
-    console.log(docs);
-
     return NextResponse.json({
       data: docs,
       totalPages,
@@ -61,7 +58,6 @@ export async function GET(req) {
       totalItems: collTotal,
     });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: 'Error al obtener el producto' },
       {

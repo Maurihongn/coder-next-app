@@ -19,7 +19,6 @@ export async function GET(req, { params }) {
 
   const offset = (page - 1) * pagesize;
 
-  //   console.log(order);
   const productosRef = collection(db, 'productos');
 
   let queries = [];
@@ -54,8 +53,6 @@ export async function GET(req, { params }) {
   const querySnapshot = await getDocs(q);
 
   const docs = querySnapshot.docs.map((doc) => doc.data());
-
-  console.log(docs);
 
   return NextResponse.json({
     data: docs,
