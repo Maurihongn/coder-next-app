@@ -3,7 +3,7 @@ import EditForm from '@/app/components/admin/edit-product/EditForm';
 const getProduct = async (slug) => {
   try {
     const response = await fetch(
-      `http://${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
+      `https://${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
       {
         cache: 'no-store',
       }
