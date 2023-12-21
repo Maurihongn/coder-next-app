@@ -2,7 +2,7 @@ import TableItem from './TableItem';
 
 const getAdminItems = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/api/admin/list`, {
+    const response = await fetch(`${process.env.VERCEL_URL}/api/admin/list`, {
       cache: 'no-store',
     });
 
