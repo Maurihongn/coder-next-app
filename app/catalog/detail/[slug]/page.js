@@ -13,7 +13,7 @@ import Image from 'next/image';
 const getProduct = async (slug) => {
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
+      `http://${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
       {
         cache: 'no-store',
       }

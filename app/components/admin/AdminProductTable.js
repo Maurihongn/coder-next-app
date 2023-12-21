@@ -2,9 +2,12 @@ import TableItem from './TableItem';
 
 const getAdminItems = async () => {
   try {
-    const response = await fetch(`${process.env.VERCEL_URL}/api/admin/list`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `http://${process.env.VERCEL_URL}/api/admin/list`,
+      {
+        cache: 'no-store',
+      }
+    );
 
     const data = await response.json();
 
