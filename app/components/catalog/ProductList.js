@@ -1,36 +1,43 @@
 import ProductCard from './ProductCard';
 
-const getItemsByCategory = async (category) => {
-  try {
-    const response = await fetch(
-      `https://${process.env.VERCEL_URL}/api/catalog/${category}?`,
-      {
-        cache: 'no-store',
-      }
-    );
+// const getItemsByCategory = async (category) => {
+//   try {
+//     const response = await fetch(
+//       `https://${process.env.VERCEL_URL}/api/catalog/${category}?`,
+//       {
+//         cache: 'no-store',
+//       }
+//     );
 
-    if (!response.ok) {
-      const data = [];
-      return data;
-    }
+//     if (!response.ok) {
+//       const data = [];
+//       return data;
+//     }
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const ProductList = async ({ category }) => {
-  const { data } = await getItemsByCategory(category);
+  const response = await fetch(
+    `https://${process.env.VERCEL_URL}/api/catalog/${category}?`,
+    {
+      cache: 'no-store',
+    }
+  ).then((r) => r.json());
 
-  if (data === null || data === undefined || data.length === 0)
-    return (
-      <div className='justify-center items-center'>
-        <h1 className='text-2xl font-bold'>No hay productos</h1>
-      </div>
-    );
+  const { data } = response;
+
+  // if (data === null || data === undefined || data.length === 0)
+  //   return (
+  //     <div className='justify-center items-center'>
+  //       <h1 className='text-2xl font-bold'>No hay productos</h1>
+  //     </div>
+  //   );
 
   return (
     <div className='justify-center items-center gap-4 grid grid-cols-1 sm:grid-cols-3 lg:gap-8'>
