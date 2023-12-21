@@ -3,13 +3,20 @@ import Link from 'next/link';
 
 const ProductCard = ({ item }) => {
   return (
-    <article className='shadow-sm hover:shadow-md bg-white rounded-sm h-full sm:max-w-xs'>
+    <article className='shadow-sm hover:shadow-md bg-white rounded-lg h-full sm:max-w-xs'>
       <Link
         href={`/catalog/detail/${item.slug}`}
         className='flex flex-row sm:flex-col'
       >
-        <div className='rounded-sm overflow-hidden w-full aspect-square flex items-center justify-center'>
-          <Image alt={item.title} src={item.image} width={288} height={288} />
+        <div className='rounded-lg overflow-hidden w-full h-full aspect-square flex items-center justify-center'>
+          <Image
+            alt={item.title}
+            src={item.image}
+            width={500}
+            height={500}
+            placeholder='blur'
+            blurDataURL='data:...'
+          />
         </div>
 
         <div className='py-4 px-4 w-full'>

@@ -35,7 +35,7 @@ const Header = () => {
                 pathname.startsWith('/catalog/')
                   ? 'bg-neutral-800'
                   : 'bg-transparent'
-              } px-4 py-2 text-neutral-50 rounded-sm hover:bg-neutral-700 whitespace-nowrap text-ellipsis`}
+              } px-4 py-2 text-neutral-50 rounded-lg hover:bg-neutral-700 whitespace-nowrap text-ellipsis`}
             >
               Catalogo
             </Link>

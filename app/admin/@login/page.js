@@ -1,8 +1,13 @@
-import LoginForm from "@/app/components/auth/LoginForm";
+import LoginForm from '@/app/components/auth/LoginForm';
+export async function generateMetadata({ params, searchParams }, parent) {
+  return {
+    title: `Coderhouse app - Login`,
+  };
+}
 
 const Login = () => {
   return (
-    <section>
+    <section className=''>
       <LoginForm />
     </section>
   );

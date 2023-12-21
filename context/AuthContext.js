@@ -1,15 +1,17 @@
-"use client";
+'use client';
 
-import { auth, googleProvider } from "@/firebase/config";
+import { auth, db, googleProvider } from '@/firebase/config';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-} from "firebase/auth";
-import { useState, createContext, useContext, useEffect } from "react";
-import { toast } from "sonner";
+} from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { useState, createContext, useContext, useEffect } from 'react';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
 
@@ -17,11 +19,11 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
-    loggedIn: false,
-    role: null,
+    logged: false,
     email: null,
     uid: null,
   });
+  const router = useRouter();
 
   const registerUser = async (values) => {
     try {
@@ -32,7 +34,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const loginUser = async (values) => {
-    await signInWithEmailAndPassword(auth, values.email, values.password);
+    try {
+      await signInWithEmailAndPassword(auth, values.email, values.password);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const googleLogin = async () => {
@@ -43,13 +49,21 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUser({
-          logged: true,
-          email: user.email,
-          uid: user.uid,
-        });
+        const docRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(docRef);
+
+        if (userDoc.data()?.rol === 'ADMIN') {
+          setUser({
+            logged: true,
+            email: user.email,
+            uid: user.uid,
+          });
+        } else {
+          router.push('/unauthorized');
+          logoutUser();
+        }
       } else {
         setUser({
           logged: false,
