@@ -25,7 +25,7 @@ const getItemsByCategory = async (category) => {
 const ProductList = async ({ category }) => {
   const { data } = await getItemsByCategory(category);
 
-  if (data.length === 0)
+  if (data === null || data === undefined || data.length === 0)
     return (
       <div className='justify-center items-center'>
         <h1 className='text-2xl font-bold'>No hay productos</h1>
