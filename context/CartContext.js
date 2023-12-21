@@ -1,5 +1,5 @@
-'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
+"use client";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
@@ -38,6 +38,10 @@ export const CartProvider = ({ children }) => {
     return cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -46,6 +50,7 @@ export const CartProvider = ({ children }) => {
         remove,
         quantity,
         total,
+        clearCart,
       }}
     >
       {children}
