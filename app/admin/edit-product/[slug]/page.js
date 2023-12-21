@@ -10,7 +10,7 @@ const getProduct = async (slug) => {
     );
 
     if (!response.ok) {
-      throw new Error('Error fetching data');
+      return false;
     }
 
     const data = await response.json();
@@ -21,18 +21,22 @@ const getProduct = async (slug) => {
   }
 };
 
-export async function generateMetadata({ params }) {
-  const { slug } = params;
-  const product = await getProduct(slug);
+// export async function generateMetadata({ params }) {
+//   const { slug } = params;
+//   const product = await getProduct(slug);
 
-  return {
-    title: `Coderhouse app - Editar producto ${product.title}`,
-  };
-}
+//   return {
+//     title: `Coderhouse app - Editar producto ${product.title}`,
+//   };
+// }
 
 const EditProduct = async ({ params }) => {
   const { slug } = params;
   const item = await getProduct(slug);
+
+  if (!item) {
+    return <></>;
+  }
 
   // console.log(item);
 

@@ -10,7 +10,8 @@ const getItemsByCategory = async (category) => {
     );
 
     if (!response.ok) {
-      throw new Error('Error fetching data');
+      const data = [];
+      return data;
     }
 
     const data = await response.json();

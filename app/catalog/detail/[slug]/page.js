@@ -20,7 +20,7 @@ const getProduct = async (slug) => {
     );
 
     if (!response.ok) {
-      throw new Error('Error fetching data');
+      return false;
     }
 
     const data = await response.json();
@@ -35,6 +35,10 @@ export async function generateMetadata({ params }) {
   const { slug } = params;
 
   const product = await getProduct(slug);
+
+  if (!product) {
+    return;
+  }
 
   return {
     title: product.title,
@@ -55,6 +59,10 @@ const ProductDetail = async ({ params }) => {
   const { slug } = params;
 
   const product = await getProduct(slug);
+
+  if (!product) {
+    return;
+  }
   return (
     <main className='container m-auto h-page px-4 w-full max-w-7xl lg:px-8 flex flex-col py-4 lg:gap-4  lg:flex-row '>
       <section className='flex flex-col p-4 bg-white rounded-t-sm gap-4 max-w-4xl w-full lg:gap-8 lg:p-8 lg:rounded-b-sm'>
