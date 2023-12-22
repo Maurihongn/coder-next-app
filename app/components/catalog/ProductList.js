@@ -3,12 +3,9 @@ import ProductCard from './ProductCard';
 const getItemsByCategory = async (category) => {
   try {
     const response = await fetch(
-      `https://${process.env.VERCEL_URL}/api/catalog/${category}?`,
+      `https://localhost:3000/api/catalog/${category}?`,
       {
         cache: 'no-store',
-        headers: {
-          'API-Key': process.env.DATA_API_KEY,
-        },
       }
     );
 

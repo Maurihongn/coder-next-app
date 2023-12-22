@@ -15,18 +15,11 @@ export const revalidate = 60;
 const getProduct = async (slug) => {
   try {
     const response = await fetch(
-      `https://${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
+      `https://localhost:3000/api/catalog/detail/${slug}`,
       {
         cache: 'no-store',
-        headers: {
-          'API-Key': process.env.DATA_API_KEY,
-        },
       }
     );
-
-    if (!response.ok) {
-      return false;
-    }
 
     const data = await response.json();
 
