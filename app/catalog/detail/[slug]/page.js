@@ -16,6 +16,9 @@ const getProduct = async (slug) => {
       `https://${process.env.VERCEL_URL}/api/catalog/detail/${slug}`,
       {
         cache: 'no-store',
+        headers: {
+          'API-Key': process.env.DATA_API_KEY,
+        },
       }
     );
 
