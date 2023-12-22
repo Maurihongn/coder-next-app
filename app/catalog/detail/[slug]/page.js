@@ -15,7 +15,7 @@ export const revalidate = 60;
 const getProduct = async (slug) => {
   try {
     const response = await fetch(
-      `https://localhost:3000/api/catalog/detail/${slug}`,
+      `http://localhost:3000/api/catalog/detail/${slug}`,
       {
         cache: 'no-store',
       }

@@ -3,7 +3,7 @@ import TableItem from './TableItem';
 export const revalidate = 60;
 const getAdminItems = async () => {
   try {
-    const response = await fetch(`https://localhost:3000/api/admin/list`, {
+    const response = await fetch(`http://localhost:3000/api/admin/list`, {
       cache: 'no-store',
       headers: {
         'API-Key': process.env.DATA_API_KEY,

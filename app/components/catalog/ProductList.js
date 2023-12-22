@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 const getItemsByCategory = async (category) => {
   try {
     const response = await fetch(
-      `https://localhost:3000/api/catalog/${category}?`,
+      `http://localhost:3000/api/catalog/${category}?`,
       {
         cache: 'no-store',
       }
