@@ -10,8 +10,6 @@ import {
 } from 'firebase/firestore';
 import Image from 'next/image';
 
-export const revalidate = 60;
-
 const getProduct = async (slug) => {
   try {
     const response = await fetch(

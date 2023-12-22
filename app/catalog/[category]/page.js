@@ -16,7 +16,7 @@ export function generateStaticParams() {
   ];
 }
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const Products = ({ params }) => {
   const { category } = params;

@@ -1,6 +1,5 @@
 import EditForm from '@/app/components/admin/edit-product/EditForm';
 
-export const revalidate = 60;
 const getProduct = async (slug) => {
   try {
     const response = await fetch(
