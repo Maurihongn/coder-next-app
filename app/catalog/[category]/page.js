@@ -7,14 +7,14 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
-export function generateStaticParams() {
-  return [
-    { category: 'all' },
-    { category: 'tvs' },
-    { category: 'hornos' },
-    { category: 'aires' },
-  ];
-}
+// export function generateStaticParams() {
+//   return [
+//     { category: 'all' },
+//     { category: 'tvs' },
+//     { category: 'hornos' },
+//     { category: 'aires' },
+//   ];
+// }
 
 export const revalidate = 60;
 

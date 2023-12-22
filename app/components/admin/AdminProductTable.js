@@ -1,25 +1,9 @@
 import TableItem from './TableItem';
 
-export const revalidate = 60;
-const getAdminItems = async () => {
-  try {
-    const response = await fetch(`http://localhost:3000/api/admin/list`, {
-      cache: 'no-store',
-      headers: {
-        'API-Key': process.env.DATA_API_KEY,
-      },
-    });
-
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const AdminProductTable = async () => {
-  const items = await getAdminItems();
+  const items = await fetch(`http://localhost:3000/api/admin/list`, {
+    cache: 'no-store',
+  }).then((r) => r.json());
 
   return (
     <div className='overflow-x-auto bg-white p-4 rounded-md'>
@@ -49,7 +33,7 @@ const AdminProductTable = async () => {
             </th>
           </tr>
         </thead>
-        {items.data && items.data.length > 0 ? (
+        {items && items.data && items.data.length > 0 ? (
           <tbody>
             {items.data.map((item) => (
               <TableItem key={item.slug} item={item} />

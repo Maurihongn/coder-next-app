@@ -1,29 +1,31 @@
 import ProductCard from './ProductCard';
 
-const getItemsByCategory = async (category) => {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/api/catalog/${category}?`,
-      {
-        cache: 'no-store',
-      }
-    );
+// const getItemsByCategory = async (category) => {
+//   try {
+//     const response = await fetch(
+//       `http://localhost:3000/api/catalog/${category}?`,
+//       {
+//         cache: 'no-store',
+//       }
+//     );
 
-    if (!response.ok) {
-      const data = [];
-      return data;
-    }
+//     if (!response.ok) {
+//       const data = [];
+//       return data;
+//     }
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const ProductList = async ({ category }) => {
-  const { data } = await getItemsByCategory(category);
+  const data = await fetch(`http://localhost:3000/api/catalog/${category}?`, {
+    cache: 'no-store',
+  }).then((r) => r.json());
 
   if (data === null || data === undefined || data.length === 0)
     return (

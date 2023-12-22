@@ -12,27 +12,15 @@ import Image from 'next/image';
 
 export const revalidate = 60;
 
-const getProduct = async (slug) => {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/api/catalog/detail/${slug}`,
-      {
-        cache: 'no-store',
-      }
-    );
-
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export async function generateMetadata({ params }) {
   const { slug } = params;
 
-  const product = await getProduct(slug);
+  const product = await fetch(
+    `http://localhost:3000/api/catalog/detail/${slug}`,
+    {
+      cache: 'no-store',
+    }
+  ).then((r) => r.json());
 
   if (!product) {
     return;
@@ -56,7 +44,12 @@ export async function generateMetadata({ params }) {
 const ProductDetail = async ({ params }) => {
   const { slug } = params;
 
-  const product = await getProduct(slug);
+  const product = await fetch(
+    `http://localhost:3000/api/catalog/detail/${slug}`,
+    {
+      cache: 'no-store',
+    }
+  ).then((r) => r.json());
 
   if (!product) {
     return;
