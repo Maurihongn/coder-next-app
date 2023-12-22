@@ -1,5 +1,6 @@
 import TableItem from './TableItem';
 
+export const revalidate = 60;
 const getAdminItems = async () => {
   try {
     const response = await fetch(
