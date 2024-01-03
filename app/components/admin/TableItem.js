@@ -44,6 +44,7 @@ const TableItem = ({ item }) => {
         <Link
           href={`/admin/edit-product/${item.slug}`}
           className='rounded bg-green-500 hover:bg-green-800 p-2 text-white flex items-center justify-center'
+          aria-label={`Edit item ${item.title}`}
         >
           <MaterialSymbolsEdit width={32} height={32} />
         </Link>
@@ -52,6 +53,7 @@ const TableItem = ({ item }) => {
           type='button'
           className='rounded bg-red-500 hover:bg-red-800 p-2 text-white flex items-center justify-center'
           onClick={handleDelete}
+          aria-label={`Delete item ${item.title}`}
         >
           <MaterialSymbolsDeleteForever width={32} height={32} />
         </button>

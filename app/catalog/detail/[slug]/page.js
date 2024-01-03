@@ -64,7 +64,15 @@ const ProductDetail = async ({ params }) => {
   const product = await getProduct(slug);
 
   if (!product) {
-    return;
+    return (
+      <main className='container m-auto h-page px-4 w-full flex flex-col py-4'>
+        <section className='flex flex-col p-4 bg-white rounded-t-sm gap-4 max-w-4xl w-full'>
+          <h2 className='font-semibold text-xl text-neutral-900'>
+            El producto al que intestas acceder no existe o fue eliminado
+          </h2>
+        </section>
+      </main>
+    );
   }
   return (
     <main className='container m-auto h-page px-4 w-full max-w-7xl lg:px-8 flex flex-col py-4 lg:gap-4  lg:flex-row '>
@@ -77,7 +85,7 @@ const ProductDetail = async ({ params }) => {
             src={product.image}
             width={860}
             height={860}
-            alt={product.name}
+            alt={product.title}
           />
         </div>
 
