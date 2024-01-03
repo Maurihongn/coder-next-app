@@ -68,7 +68,8 @@ const ProductDetail = async ({ params }) => {
       <main className='container m-auto h-page px-4 w-full flex flex-col py-4'>
         <section className='flex flex-col p-4 bg-white rounded-t-sm gap-4 max-w-4xl w-full mx-auto'>
           <h2 className='font-semibold text-xl text-neutral-900 w-full text-center'>
-            El producto al que intestas acceder no existe o fue eliminado
+            El producto al que estás intentando acceder no existe o ha sido
+            eliminado
           </h2>
         </section>
       </main>
