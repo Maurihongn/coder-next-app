@@ -6,9 +6,6 @@ const getAdminItems = async () => {
       `https://${process.env.VERCEL_URL}/api/admin/list`,
       {
         cache: 'no-store',
-        headers: {
-          'API-Key': process.env.DATA_API_KEY,
-        },
       }
     );
 
@@ -22,6 +19,8 @@ const getAdminItems = async () => {
     return data;
   } catch (error) {
     console.log(error);
+    const data = [];
+    return data;
   }
 };
 

@@ -21,6 +21,10 @@ const getItemsByCategory = async (category) => {
     return data;
   } catch (error) {
     console.log(error);
+    const data = {
+      data: [],
+    };
+    return data;
   }
 };
 
